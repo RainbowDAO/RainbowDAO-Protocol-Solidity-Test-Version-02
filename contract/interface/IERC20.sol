@@ -3,8 +3,6 @@ pragma solidity ^0.6.0;
 
 
 interface IERC20 {
-    
-    function name() external view returns (string memory);
 
     function totalSupply() external view returns (uint256);
 
