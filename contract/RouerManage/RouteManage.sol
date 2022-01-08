@@ -22,5 +22,8 @@ contract routeManage{
         require(rainbowContracts[contractName] == address(0), "contract is exist");
         rainbowContracts[contractName] = contractAddress;
     }
+    function updateContract(string memory contractName,address newAddress) onlyCore public {
+        rainbowContracts[name] = newAddress;
+    }
     
 }
