@@ -17,11 +17,10 @@ contract Authority{
         _;
     }
     
-    constructor(address _owner) public{
+    constructor(address _owner) public {
         owner = _owner;
     }
     
-     
     function getActId(string memory _contractName, string memory _func) public view returns(uint){
         return funcActId[_contractName][_func];
     }
