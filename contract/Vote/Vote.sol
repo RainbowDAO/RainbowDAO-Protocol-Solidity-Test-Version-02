@@ -5,22 +5,22 @@ import './RouteManage.sol';
 
 contract Vote {
     
-    event voteToManager(address voter,address receiver,uint amount);
-    event voteToMsManagerEvent(address voter,address receiver,uint amount);
+   event voteToManager(address voter,address receiver,uint amount);
+   event voteToMsManagerEvent(address voter,address receiver,uint amount);
 
-    function vote(uint256 nodeId,uint256 amount,address receiver) public {
+   function vote(uint256 nodeId,uint256 amount,address receiver) public {
 
-    }
+   }
 
-    function voteToMsManager(uint256 nodeId,uint256 amount,address receiver) public {
+   function voteToMsManager(uint256 nodeId,uint256 amount,address receiver) public {
          
-    }
+   }
     
-     function endMsManagerVote(uint nodeId) public {
+   function endMsManagerVote(uint nodeId) public {
          
-        // require(block.timestamp >  ,'Unexpired');
+     // require(block.timestamp >  ,'Unexpired');
         
-     }
+   }
     
 
 }
