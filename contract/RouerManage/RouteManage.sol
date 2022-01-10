@@ -17,11 +17,12 @@ contract routeManage{
     function getContract(string memory name) public view returns(address){
         return rainbowContracts[name];
     }
-    function registerContract(string memory contractName, address contractAddress) public {
-        require(msg.sender == core, "No permission");
+
+    function registerContract(string memory contractName, address contractAddress) onlyCore public {
         require(rainbowContracts[contractName] == address(0), "contract is exist");
         rainbowContracts[contractName] = contractAddress;
     }
+
     function updateContract(string memory contractName,address newAddress) onlyCore public {
         rainbowContracts[name] = newAddress;
     }
