@@ -1,25 +1,27 @@
 {
-  "name": "@Rainbow/DAO-Factory",
+  "name": "rainbowdao-protocol",
   "version": "1.0.0",
-  "private": true,
-  "description": "",
-  "files": [],
+  "description": "RainbowDAO Protocol Solidity Test Version 02",
+  "main": "index.js",
   "scripts": {
-    "build": "truffle compile",
-    "compile": "truffle compile",
-    "coverage": "scripts/coverage.js",
-    "test": "mocha --timeout 10000 --exit --retries 10 --recursive",
-    "deploy": "truffle migrate --network mainnet",
-    "deploy-ropsten": "truffle migrate --network ropsten",
-    "deploy-rinkeby": "truffle migrate --network rinkeby"
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "rainbow",
-  "license": "AGPL-3.0-only",
-  "dependencies": {
-    "@openzeppelin/cli": "^2.8.2",
-    "@openzeppelin/contracts": "^4.3.0",
-    "@truffle/hdwallet-provider": "^1.5.0",
-    "dotenv": "^10.0.0"
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/michaelHookon/RainbowDAO-Protocol-Solidity-Test-Version-02.git"
   },
-  "devDependencies": {}
+  "author": "michealhookon",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/michaelHookon/RainbowDAO-Protocol-Solidity-Test-Version-02/issues"
+  },
+  "homepage": "https://github.com/michaelHookon/RainbowDAO-Protocol-Solidity-Test-Version-02#readme",
+  "devDependencies": {
+    "@nomiclabs/hardhat-ethers": "^2.0.5",
+    "@nomiclabs/hardhat-waffle": "^2.0.2",
+    "chai": "^4.3.6",
+    "ethereum-waffle": "^3.4.0",
+    "ethers": "^5.5.4",
+    "hardhat": "^2.8.4"
+  }
 }
