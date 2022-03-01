@@ -1,4 +1,4 @@
-pragma solidity ^0.6.0;
+pragma solidity ^0.8.0;
 
 contract routeManage{
     address public core;
@@ -24,7 +24,7 @@ contract routeManage{
     }
 
     function updateContract(string memory contractName,address newAddress) onlyCore public {
-        rainbowContracts[name] = newAddress;
+        rainbowContracts[contractName] = newAddress;
     }
     
 }
