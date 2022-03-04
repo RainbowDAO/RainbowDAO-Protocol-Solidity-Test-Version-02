@@ -1,4 +1,4 @@
-pragma solidity ^0.6.0;
+pragma solidity ^0.8.0;
 
 interface IAuthority {
     function addAct(string memory _contractName, string memory _func) external;

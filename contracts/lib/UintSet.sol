@@ -8,7 +8,6 @@ pragma solidity ^0.8.0;
             mapping (bytes32 => uint256) _indexes;
     }
    
-    //添加元素
     function add(TokenIdSet storage set, uint256 value) internal returns (bool) {
         if (!contains(set, value)) {
             set._values.push(bytes32(value));
@@ -18,7 +17,6 @@ pragma solidity ^0.8.0;
         return false;
     }
     
-     //删除元素
     function remove(TokenIdSet storage set, uint256 value) internal returns (bool) {
         uint256 valueIndex = set._indexes[bytes32(value)];
         if (valueIndex != 0) {
@@ -33,18 +31,14 @@ pragma solidity ^0.8.0;
         }
          return false;
     }
-    
-    //查询是否包含元素
     function contains(TokenIdSet storage set, uint256 value) internal view returns (bool) {
         return set._indexes[bytes32(value)] != 0;
     }
     
-    //查询长度
     function length(TokenIdSet storage set) internal view returns (uint256) {
         return set._values.length;
     }
     
-    //查询元素所在位置
     function at(TokenIdSet storage set, uint256 index) internal view returns (uint256) {
         require(set._values.length > index,"EnumerableSet: index out of bounds");
         return uint256(set._values[index]);

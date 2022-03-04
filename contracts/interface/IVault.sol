@@ -1,4 +1,4 @@
-pragma solidity ^0.6.0;
+pragma solidity ^0.8.0;
 
 interface IVault {
     function deposit(address token, uint amount) external view returns(bool);
