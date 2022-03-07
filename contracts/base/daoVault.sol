@@ -1,8 +1,8 @@
 pragma solidity ^0.8.0;
 pragma experimental ABIEncoderV2;
-import "./interface/IERC20.sol";
-import "./interface/IAuthority.sol";
-import {Set} from "./lib/TokenSet.sol";
+import "../interface/IERC20.sol";
+import "../interface/IAuthority.sol";
+import {Set} from "../lib/TokenSet.sol";
 
 contract Vault{
     using Set for Set.Address;

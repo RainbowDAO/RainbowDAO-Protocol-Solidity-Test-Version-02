@@ -9,11 +9,11 @@ contract Vote {
    event voteToMsManagerEvent(address voter,address receiver,uint amount);
 
    function vote(uint256 nodeId,uint256 amount,address receiver) public {
-
+    
    }
 
    function voteToMsManager(uint256 nodeId,uint256 amount,address receiver) public {
-         
+    
    }
     
    function endMsManagerVote(uint nodeId) public {
