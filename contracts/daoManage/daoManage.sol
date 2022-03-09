@@ -1,37 +1,33 @@
 pragma solidity ^0.8.0;
 pragma experimental ABIEncoderV2;
-
-import "@openzeppelin/contracts/token/ERC20/IERC20.sol";
+import "../interface/IAuthority.sol";
+import "../interface/IERC20.sol";
 import {Set} from "../lib/TokenSet.sol";
 
-contract DaoMembers{
+contract DaoManage{
     using Set for Set.Address;
     address public creator;
-   
+    IAuthority auth;
+    address vault;
+    string  name;
+    string  logo;
+    string  des;
     uint public voteId;
     
     mapping(address => string) public memberName;
     mapping(address => bool) public moderators;
-    mapping(uint => mapping(address => bool)) public voters;
-    mapping(address => uint) public joinTime;
-    
-    struct Proposal{
-       uint supportAmount;
-       uint minAmount;
-       address erc20;
-       address to;
-       uint amount;
-       uint state;
-       uint endTime;
-       bool executed;
-    }
     mapping(uint => Proposal) public proposalInfo;
-
+    mapping(uint => mapping(address => bool)) public voters;
+    
     Set.Address applying;
     Set.Address members;
+    Proposal[] public proposalArray;
     
-    constructor(address _creator) public {
-        creator =_creator;
+    constructor(address _creator,string memory _name,string memory _logo, string memory _des,address _auth, address _vault) public {
+        creator = _creator;
+        auth = IAuthority(_auth);
+        vault = _vault;
+        _init(_name,_logo,_des);
     }
     
     modifier onlyManage(){
@@ -47,18 +43,56 @@ contract DaoMembers{
     }
     
     function approveApply(address addr) public returns(bool){
-        // require(msg.sender == creator || auth.hasAuthority(msg.sender,"DaoManage","approveApply"));
+        require(msg.sender == creator || auth.hasAuthority(msg.sender,"DaoManage","approveApply"));
         applying.remove(addr);
         members.add(addr);
         return true;
     }
     
     function vetoApply(address addr) public returns(bool){
-        // require(msg.sender == creator || auth.hasAuthority(msg.sender,"DaoManage","vetoApply"));
+        require(msg.sender == creator || auth.hasAuthority(msg.sender,"DaoManage","vetoApply"));
         applying.remove(addr);
         return true;
     }
+    struct Proposal{
+        uint voteId;
+        bool executed;
+        string title;
+        string description;
+        bool trigger;
+        
+        uint startTime;
+        uint endTime;
+        uint voteTime;
+        uint supportAmount;
+        uint minAmount;
+        address erc20;
+        address to;
+        uint amount;
+    }
     
+    function newProposal(string memory title, string memory description, bool trigger, uint endTime, uint voteTime, uint minAmount,address token, address to, uint amount) external {
+        require(auth.hasAuthority(msg.sender,"DaoManage","newProposal"));
+        
+        Proposal memory pro = Proposal({
+            voteId: voteId++,
+            executed: false,
+            title: title,
+            description: description,
+            trigger: trigger,
+            startTime: block.timestamp,
+            endTime: endTime,
+            voteTime: voteTime,
+            supportAmount: 0,
+            minAmount: minAmount,
+            erc20: token,
+            to: to,
+            amount: amount
+        });
+        
+        proposalInfo[voteId] = pro;
+        proposalArray.push(pro);
+    }
     
     function vote(uint _voteId,address _account, bool _support) public {
         require(_voteId <= voteId,"Not exsited");
@@ -79,7 +113,7 @@ contract DaoMembers{
         proposalInfo[_voteId].executed = true;
         
         //Trading methods should be moved to Treasury contracts
-        // IERC20(proposalInfo[_voteId].erc20).transferFrom(vault,proposalInfo[_voteId].to,proposalInfo[_voteId].amount);
+        IERC20(proposalInfo[_voteId].erc20).transferFrom(vault,proposalInfo[_voteId].to,proposalInfo[_voteId].amount);
         
     }
     
@@ -87,6 +121,11 @@ contract DaoMembers{
         return proposalInfo[voteId];
     }
     
+    function _init(string memory _name,string memory _logo, string memory _des) internal {
+        name = _name;
+        logo = _logo;
+        des = _des;
+    }
     
     
     function getApplyingLength() public view returns(uint){
@@ -105,7 +144,8 @@ contract DaoMembers{
         return members.at(index);
     }
     
-
+  
+    
     
     
 }

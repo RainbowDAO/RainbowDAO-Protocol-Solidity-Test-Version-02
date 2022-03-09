@@ -1,5 +1,5 @@
 
-pragma solidity ^0.6.0;
+pragma solidity ^0.8.0;
 
 
 interface IERC20 {
@@ -17,7 +17,8 @@ interface IERC20 {
 
 
     function approve(address spender, uint256 amount) external returns (bool);
-
+    
+    function name() external returns(string memory tokenName);
 
     function transferFrom(
         address sender,

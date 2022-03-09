@@ -1,4 +1,4 @@
-pragma solidity ^0.6.0;
+pragma solidity ^0.8.0;
 pragma experimental ABIEncoderV2;
 import "./interface/IERC20.sol";
 import "./interface/IUniswapV2Router01.sol";
