@@ -46,7 +46,6 @@ contract daoBase {
         // newDao = daoAddress;
         daoNameAddress[name] = daoAddress;
         return daoAddress;
-        // return address(0);
         
     }
 }
