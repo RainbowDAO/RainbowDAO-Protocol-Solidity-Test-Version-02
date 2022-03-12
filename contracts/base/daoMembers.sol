@@ -39,6 +39,20 @@ contract DaoMembers{
         _;
     }
     
+    function insertJoinTime()public{
+        require(msg.sender != address(0),'is not user');
+        require(joinTime[msg.sender] == 0,'double setting');
+        joinTime[msg.sender] = block.timestamp;
+    }
+    
+    function checkUserAllow() public returns(bool){
+        require(msg.sender != address(0));
+        if(joinTime[msg.sender] >=86400*7){
+            return true;
+        }
+        return false;
+    }
+    
     function applyJoin(address addr) public returns(bool){
         require(!members.contains(addr),"Is memeber");
         require(!applying.contains(addr),"Applying");

@@ -36,7 +36,7 @@ contract Authority{
     
     function addAct(string memory _contractName, string memory _func) public {
         require(msg.sender == owner || hasAuthority(msg.sender,"Authority","addAct"), "No permission");
-        require(funcActId[_contractName][_func] !=0, "existed");
+        // require(funcActId[_contractName][_func] !=0, "existed");
         
         index++;
         Act memory act = Act({
