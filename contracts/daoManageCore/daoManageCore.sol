@@ -4,6 +4,7 @@ import "../interface/IAuthority.sol";
 import "../interface/IERC20.sol";
 import {Set} from "../lib/TokenSet.sol";
 
+
 contract DaoManage{
     using Set for Set.Address;
     address public creator;
@@ -18,6 +19,8 @@ contract DaoManage{
     mapping(address => bool) public moderators;
     mapping(uint => Proposal) public proposalInfo;
     mapping(uint => mapping(address => bool)) public voters;
+
+
     
     Set.Address applying;
     Set.Address members;
