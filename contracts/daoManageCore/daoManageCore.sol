@@ -63,7 +63,6 @@ contract DaoManage{
         string title;
         string description;
         bool trigger;
-        
         uint startTime;
         uint endTime;
         uint voteTime;

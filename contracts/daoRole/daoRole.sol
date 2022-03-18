@@ -17,4 +17,5 @@ _manager = to;
 function walletOrMultiOrDao(address  role , uint32 roleNum,  address daoAddr) public onlyManager{
 accountDao[role][roleNum] = daoAddr;
 }
+
 }

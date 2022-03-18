@@ -4,7 +4,7 @@ pragma experimental ABIEncoderV2;
 import '../routeManage/routeManage.sol';
 import '@openzeppelin/contracts/token/ERC20/IERC20.sol';
 import '../base/daoMembers.sol';
-import '../interface/IdaoManage.sol';
+import '../interface/IdaoManageCore.sol';
 
 contract Vote {
     uint index;
